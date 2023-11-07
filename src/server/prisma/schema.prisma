@@ -16,5 +16,6 @@ model Students {
   lastName       String
   email          String   @unique
   imageUrl       String
-  gpa            Decimal  @range([0.0, 4.0])
+  gpa            Decimal
 }
+// have to come back to range - perhaps needs to be done on the form or as a CRUD error?
