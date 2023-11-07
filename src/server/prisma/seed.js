@@ -26,7 +26,7 @@ const seed = async () => {
     "Rodriguez",
     "Wilson",
   ];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 100; i++) {
     const randomFirstNameIndex = Math.floor(Math.random() * firstNames.length); // Generate a random index for first names
     const randomLastNameIndex = Math.floor(Math.random() * lastNames.length); // Generate a random index for last names
 
@@ -37,7 +37,7 @@ const seed = async () => {
       data: {
         firstName: firstName,
         lastName: firstName,
-        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@students.com`,
+        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}.${gpa}@students.com`,
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",
         gpa: gpa,
