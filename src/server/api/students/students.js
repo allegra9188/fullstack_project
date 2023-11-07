@@ -2,7 +2,7 @@ const { ServerError } = require("../../errors");
 const prisma = require("../../prisma");
 
 const router = require("express").Router();
-module.exports = router;
+
 
 /** retrieves all students */
 router.get("/", async (req, res, next) => {
@@ -17,7 +17,9 @@ router.get("/", async (req, res, next) => {
 /** Creates new student */
 router.post("/", async (req, res, next) => {
   try {
-    // TODO
+    const newStudent = await prisma.student.create({
+      data: req.body })
+      res.json(newStudent)
   } catch (err) {
     next(err);
   }
@@ -28,7 +30,13 @@ router.post("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const student = await prisma.task.findUnique({ where: { id } });
+    const student = await prisma.student.findUnique({ where: { id } });
+    if (!student) {
+      return next({
+        status: 404,
+        message: `Could not find student with id ${id}.`,
+      });
+    }
     res.json(student);
   } catch (err) {
     next(err);
@@ -65,3 +73,6 @@ router.delete("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+
+module.exports = router;
