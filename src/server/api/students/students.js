@@ -7,9 +7,7 @@ module.exports = router;
 /** retrieves all students */
 router.get("/", async (req, res, next) => {
   try {
-    const students = await prisma.student.findMany({
-      // TODO
-    });
+    const students = await prisma.student.findMany();
     res.json(students);
   } catch (err) {
     next(err);
