@@ -29,16 +29,14 @@ export default function Students() {
       </form>
       <div className="sortBy-container">
         <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbylastname")}>
-          Last Name
-        </button>
+        <button onClick={() => navigate("/students")}>First Name</button>
       </div>
       <ul className="student-list">
         {[...students]
           .filter((student) =>
             (student.firstName + student.lastName).match(searchRegex)
           )
-          .sort((a, z) => a.firstName.localeCompare(z.firstName))
+          .sort((a, z) => a.lastName.localeCompare(z.lastName))
           .map((student) => (
             <StudentCard key={student.id} student={student} />
           ))}

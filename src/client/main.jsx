@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Students from "./features/students/StudentList";
 import StudentDetails from "./features/students/StudentDetails";
 import ErrorPage from "./features/students/ErrorPage";
+import StudentsByLastName from "./features/students/StudentsByLastName";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/students", element: <Students /> },
       { path: "/students/:id", element: <StudentDetails /> },
       { path: "*", element: <ErrorPage /> },
+      { path: "/students/sortedbylastname", element: <StudentsByLastName /> },
     ],
   },
 ]);
