@@ -47,12 +47,22 @@ router.put("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
-    const student = await prisma.task.findUnique({ where: { id } });
-
-    const updatedStudent = await prisma.task.update({
+    const studentExists = await prisma.student.findUnique({
       where: { id },
-      // TODO (below)
-      data: {},
+    });
+
+    if (!studentExists) {
+      return next({
+        status: 404,
+        message: `Could not find student with id ${id}.`,
+      });
+    }
+
+    // add error handling for typeof errors
+
+    const updatedStudent = await prisma.student.update({
+      where: { id },
+      data: req.body,
     });
     res.json(updatedStudent);
   } catch (err) {
