@@ -2,14 +2,11 @@ import { Link } from "react-router-dom";
 
 // A Student Card displays a brief preview of the Student in StudentList
 
-// Check how the API has data listed after student
-
 export default function StudentCard({ student }) {
     
     return (
         <li className="student-card">
             <div className="student-image">
-                {/* Link seeded image here: */}
                 <img src={student.imageUrl} alt="" />
             </div>
             <section className="student-info">
