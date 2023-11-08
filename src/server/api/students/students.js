@@ -49,6 +49,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
     const student = await prisma.student.findUnique({ where: { id } });
+
     if (!student) {
       return next({
         status: 404,
@@ -65,6 +66,9 @@ router.get("/:id", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
+
+
+    const student = await prisma.student.findUnique({ where: { id } });
 
     const studentExists = await prisma.student.findUnique({
       where: { id },
@@ -94,6 +98,7 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
+    const student = await prisma.student.findUnique({ where: { id } });
     await prisma.student.delete({ where: { id } });
     res.sendStatus(204);
   } catch (err) {

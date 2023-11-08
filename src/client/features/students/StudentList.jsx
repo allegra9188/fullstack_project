@@ -4,6 +4,7 @@ import StudentDetails from "./StudentDetails";
 import { useGetStudentsQuery } from "./studentSlice";
 
 import "./Students.less";
+import "./StudentList.scss"
 
 // reference from Book Buddy
 /** Main interface for user to interact with their tasks */

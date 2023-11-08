@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // Check how the API has data listed after student
 
 export default function StudentCard({ student }) {
-    console.log(student);
+    
     return (
         <li className="student-card">
             <div className="student-image">
