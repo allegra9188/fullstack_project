@@ -36,8 +36,13 @@ const seed = async () => {
     await prisma.student.create({
       data: {
         firstName: firstName,
+<<<<<<< HEAD
         lastName: lastName,
         email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i + 1}.@students.com`,
+=======
+        lastName: firstName,
+        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}.${gpa}@students.com`,
+>>>>>>> main
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",
         gpa: gpa,
