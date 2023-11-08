@@ -14,18 +14,20 @@ export default function StudentDetails() {
   const { id } = useParams();
   const { data: student, isLoading } = useGetStudentQuery(id);
 
-
   /** Deletes the task */
   const onDelete = async (evt) => {
     evt.preventDefault();
     deleteStudent(student.id);
   };
 
+  if (!student) {
+    return <p>There is no student with that id</p>;
+  }
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <main className="student-details">
-
       <h1>
         {student.firstName}+{student.lastName}
       </h1>
