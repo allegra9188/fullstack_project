@@ -1,47 +1,101 @@
-.student-list {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1ch;
-  
-    list-style: none;
-  
-    li {
-      display: flex;
-      gap: 1ch;
-  
-      width: 100%;
-      height: 10rem;
-      padding: 0.5rem;
-  
-      background: #e8e8e8;
-  
-      .student-image {
-        flex: 1;
-        min-height: 0;
-  
-        display: flex;
-        justify-content: center;
-        align-items: center;
-  
-        img {
-          max-width: 100%;
-          max-height: 100%;
-        }
-      }
-  
-      .student-info {
-        flex: 5;
-  
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-  
-        a {
-          display: block;
-          width: 100%;
-          text-align: right;
-        }
-      }
+.students {
+  li:not(:last-child) {
+    margin-bottom: 1ch;
+  }
+
+  form {
+    & > * {
+      margin-right: 0.5ch;
     }
   }
+
+  button {
+    cursor: pointer;
+    padding: 0.1rem 0.25rem;
+  }
+}
+
+.student-card {
+
+  width: 160px;
+  height: 180px;
+  margin: 5px;
+  background-color:cadetblue;
+  text-align: center;
+  padding: 2px;
+  // background-color: blueviolet;
+}
   
+
+.student-info {
+  // background-color: aqua;
+}
+
+.student-image {
+//   width: 80px;
+//   height: 90px;
+// background-color: aqua;
+}
+
+.student-img {
+  width: 80px;
+  height: 90px;
+}
+
+.student-list {
+// background-color: black;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+margin-top: 25px;
+width: auto;
+}
+
+.student-details {
+  margin-top: 25px;
+  // background-color: black;
+  // text-align: center;
+}
+
+.update-btn {
+  margin-top: 50px;
+}
+
+.save-btn {
+  margin-left: 5px;
+}
+
+input {
+  background-color: aliceblue;
+  border-radius: 5px;
+  // width: 200px;
+}
+
+.firstName-input {
+ width: 120px;
+ margin-right: 5px;
+  // width: 200px;
+}
+
+.lastName-input {
+  width: 120px;
+  // margin-left: 5px;
+   // width: 200px;
+ }
+
+ .imageUrl-input {
+  width: 250px;
+ margin-top: 10px;
+ margin-bottom: 15px;
+   text-wrap: wrap;
+ }
+
+ .email-input {
+  width: 200px;
+   margin-bottom: 15px;
+ }
+
+ .gpa-input {
+  width: 60px;
+   // width: 200px;
+ }

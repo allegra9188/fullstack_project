@@ -1,64 +1,87 @@
 import { useState } from "react";
-import { useDeleteStudentMutation, useEditStudentMutation, useGetStudentQuery } from "./studentSlice";
+import { useEditStudentMutation, useGetStudentQuery } from "./studentSlice";
 import { useParams } from "react-router-dom";
-import "./StudentDetails.scss"
+import "./StudentDetails.scss";
 
-/** Allows user to read, update, and delete a task */
 export default function StudentDetails() {
-  // const [editStudent] = useEditStudentMutation();
-  // const [deleteStudent] = useDeleteStudentMutation();
-
-  // const [description, setDescription] = useState(student.description);
-
   const { id } = useParams();
   const { data: student, isLoading } = useGetStudentQuery(id);
-  console.log(id);
-  // /** Updates the task's `done` status */
-  // const toggleTask = async (evt) => {
-  //   const done = evt.target.checked;
-  //   editStudent({ ...student, done });
-  // };
+  const [updatedStudent, setUpdatedStudent] = useState({});
+  const [showInputs, setShowInputs] = useState(false)
+  const [editStudent] = useEditStudentMutation();
 
-  // /** Saves the task's description */
-  // const save = async (evt) => {
-  //   evt.preventDefault();
-  //   editStudent({ ...student, description });
-  // };
+  const handleUpdate = async () => {
+    try {
+      await editStudent({ id, ...updatedStudent });
+      // After the update is successful, you can update the UI or perform any other necessary actions.
+    } catch (error) {
+      console.error("Failed to update student:", error);
+    }
+  };
 
-  // /** Deletes the task */
-  // const onDelete = async (evt) => {
-  //   evt.preventDefault();
-  //   deleteStudent(student.id);
-  // };
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  return isLoading ?(
-    <p>Loading...</p>
-  ) : (
+  return (
     <main className="student-details">
-      <h1>{student.firstName}+{student.lastName}</h1>
-      <h2>{student.email}</h2>
-      <h2>{student.gpa}</h2>
-      <img src={student.imageUrl} alt={student.firstName} />
+      <h2 className="details-name">
+        <b>Name: </b> 
+        {showInputs ? (
+          <>
+            <input className="firstName-input"
+              type="text"
+              value={updatedStudent.firstName || student.firstName}
+              onChange={(e) => setUpdatedStudent({ ...updatedStudent, firstName: e.target.value })}
+            />
+            <input className="lastName-input"
+              type="text"
+              value={updatedStudent.lastName || student.lastName}
+              onChange={(e) => setUpdatedStudent({ ...updatedStudent, lastName: e.target.value })}
+            />
+          </>
+        ) : (
+          `${student.firstName} ${student.lastName}`
+        )}
+      </h2>
+      {showInputs ? (
+        <input className="imageUrl-input"
+          type="text"
+          value={updatedStudent.imageUrl || student.imageUrl}
+          onChange={(e) => setUpdatedStudent({ ...updatedStudent, imageUrl: e.target.value })}
+        />
+      ) : (
+        <img src={student.imageUrl} alt={student.firstName} className="student-img" />
+      )}
+      <div>
+        <h2>Email: {student.email}</h2>
+        {showInputs && (
+          <input className="email-input"
+            type="text"
+            value={updatedStudent.email || student.email}
+            onChange={(e) => setUpdatedStudent({ ...updatedStudent, email: e.target.value })}
+          />
+        )}
+      </div>
+      <div>
+        <br />
+        <h2>GPA: {student.gpa}</h2>
+        {showInputs && (
+          <input className="gpa-input"
+            type="number"
+            value={updatedStudent.gpa || student.gpa}
+            onChange={(e) => setUpdatedStudent({ ...updatedStudent, gpa: parseFloat(e.target.value) })}
+          />
+        )}
+      </div>
+      <button className="update-btn" onClick={() => setShowInputs(!showInputs)}>
+        {showInputs ? 'Hide' : 'Update'}
+      </button>
+      {showInputs && (
+        <button className="save-btn" onClick={handleUpdate}>
+          Save
+        </button>
+      )}
     </main>
-  
-
-
-
-
-    // <li>
-    //   <form onSubmit={save}>
-    //     <input type="checkbox" checked={task.done} onChange={toggleTask} />
-    //     <input
-    //       type="text"
-    //       value={description}
-    //       onChange={(e) => setDescription(e.target.value)}
-    //       required
-    //     />
-    //     <button>Save</button>
-    //     <button onClick={onDelete} aria-label="delete">
-    //       🞪
-    //     </button>
-    //   </form>
-    // </li>
   );
 }

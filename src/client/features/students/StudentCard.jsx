@@ -10,7 +10,7 @@ export default function StudentCard({ student }) {
         <li className="student-card">
             <div className="student-image">
                 {/* Link seeded image here: */}
-                <img src={student.imageUrl} alt="" />
+                <img src={student.imageUrl} className="student-img" alt="" />
             </div>
             <section className="student-info">
                 <h2>{student.firstName}</h2>
