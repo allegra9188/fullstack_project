@@ -28,7 +28,7 @@ router.post("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const student = await prisma.task.findUnique({ where: { id } });
+    const student = await prisma.student.findUnique({ where: { id } });
     res.json(student);
   } catch (err) {
     next(err);
@@ -40,9 +40,9 @@ router.put("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
-    const student = await prisma.task.findUnique({ where: { id } });
+    const student = await prisma.student.findUnique({ where: { id } });
 
-    const updatedStudent = await prisma.task.update({
+    const updatedStudent = await prisma.student.update({
       where: { id },
       // TODO (below)
       data: {},
@@ -58,8 +58,8 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const student = await prisma.task.findUnique({ where: { id } });
-    await prisma.task.delete({ where: { id } });
+    const student = await prisma.student.findUnique({ where: { id } });
+    await prisma.student.delete({ where: { id } });
     res.sendStatus(204);
   } catch (err) {
     next(err);
