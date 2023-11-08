@@ -2,7 +2,7 @@ import { useState } from "react";
 import StudentCard from "./StudentCard";
 import StudentDetails from "./StudentDetails";
 import { useGetStudentsQuery } from "./studentSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Students.less";
 import "./StudentList.scss";
@@ -19,20 +19,25 @@ export default function Students() {
     <h2>Loading students...</h2>
   ) : (
     <main>
-      <h1>Students</h1>
+      <br />
+      <h2>Students:</h2>
       <form>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search Student..."
           onChange={(e) => setFilter(e.target.value)}
         />
       </form>
+      <button>
+        <Link to="/students/add">Add Student</Link>
+      </button>
       <div className="sortBy-container">
         <p>Sort by:</p>
         <button onClick={() => navigate("/students/sortedbylastname")}>
           Last Name
         </button>
       </div>
+      <br />
       <ul className="student-list">
         {[...students]
           .filter((student) =>

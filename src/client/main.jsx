@@ -13,6 +13,7 @@ import Students from "./features/students/StudentList";
 import StudentDetails from "./features/students/StudentDetails";
 import ErrorPage from "./features/students/ErrorPage";
 import StudentsByLastName from "./features/students/StudentsByLastName";
+import NewStudent from "./features/students/NewStudent";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Students /> },
       { path: "/students", element: <Students /> },
       { path: "/students/:id", element: <StudentDetails /> },
+      { path: "/students/add", element: <NewStudent /> },
       { path: "*", element: <ErrorPage /> },
       { path: "/students/sortedbylastname", element: <StudentsByLastName /> },
     ],
