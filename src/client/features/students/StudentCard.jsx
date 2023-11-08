@@ -25,6 +25,7 @@ export default function StudentCard({ student }) {
         <h2>{student.firstName}</h2>
         <h2>{student.lastName}</h2>
         <Link to={`/students/${student.id}`}>More Info</Link>
+        <h4>GPA: {student.gpa}</h4>
         <button onClick={onDelete} aria-label="delete">
           Delete Student
         </button>

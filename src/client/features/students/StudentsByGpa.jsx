@@ -13,7 +13,6 @@ export default function Students() {
   const { data: students, isLoading } = useGetStudentsQuery();
 
   const navigate = useNavigate();
-
   const [filter, setFilter] = useState("");
   const searchRegex = new RegExp(filter, "i");
 
@@ -35,7 +34,10 @@ export default function Students() {
       </button>
       <div className="sortBy-container">
         <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbygpa")}>GPA</button>
+        <button onClick={() => navigate("/students")}>First Name</button>
+        <button onClick={() => navigate("/students/sortedbylastname")}>
+          Last Name
+        </button>
       </div>
       <br />
       <ul className="student-list">
@@ -43,7 +45,7 @@ export default function Students() {
           .filter((student) =>
             (student.firstName + student.lastName).match(searchRegex)
           )
-          .sort((a, z) => a.firstName.localeCompare(z.firstName))
+          .sort((a, z) => a.gpa.localeCompare(z.gpa))
           .map((student) => (
             <StudentCard key={student.id} student={student} />
           ))}
