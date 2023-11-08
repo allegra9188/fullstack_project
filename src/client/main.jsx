@@ -6,11 +6,10 @@ import "./index.less";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import AuthForm from "./features/auth/AuthForm";
 import Root from "./layout/Root.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Students from "./features/students/Students";
+import Students from "./features/students/StudentList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +17,6 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Students /> },
       { path: "/students", element: <Students /> },
-      { path: "/login", element: <AuthForm /> },
     ],
   },
 ]);

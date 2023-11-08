@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDeleteStudentMutation, useEditStudentMutation } from "./studentSlice";
 
 /** Allows user to read, update, and delete a task */
-export default function Student({ student }) {
+export default function StudentDetails({ student }) {
   const [editStudent] = useEditStudentMutation();
   const [deleteStudent] = useDeleteStudentMutation();
 
