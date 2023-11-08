@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { useDeleteStudentMutation, useEditStudentMutation, useGetStudentQuery } from "./studentSlice";
+import {
+  useDeleteStudentMutation,
+  useEditStudentMutation,
+  useGetStudentQuery,
+} from "./studentSlice";
 import { useParams } from "react-router-dom";
-import "./StudentDetails.scss"
+import "./StudentDetails.scss";
 
 /** Allows user to read, update, and delete a task */
 export default function StudentDetails() {
@@ -12,7 +16,7 @@ export default function StudentDetails() {
 
   const { id } = useParams();
   const { data: student, isLoading } = useGetStudentQuery(id);
-  console.log(id);
+  console.log(`id: `, id);
   // /** Updates the task's `done` status */
   // const toggleTask = async (evt) => {
   //   const done = evt.target.checked;
@@ -31,19 +35,17 @@ export default function StudentDetails() {
   //   deleteStudent(student.id);
   // };
 
-  return isLoading ?(
+  return isLoading ? (
     <p>Loading...</p>
   ) : (
     <main className="student-details">
-      <h1>{student.firstName}+{student.lastName}</h1>
+      <h1>
+        {student.firstName}+{student.lastName}
+      </h1>
       <h2>{student.email}</h2>
       <h2>{student.gpa}</h2>
       <img src={student.imageUrl} alt={student.firstName} />
     </main>
-  
-
-
-
 
     // <li>
     //   <form onSubmit={save}>
