@@ -12,9 +12,11 @@ const seed = async () => {
 
     await prisma.student.create({
       data: {
+
         firstName: randomFirstName,
         lastName: randomLastName,
         email: `${randomFirstName.toLowerCase()}.${randomLastName.toLowerCase()}@students.com`,
+
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",
         gpa: gpa,
@@ -30,3 +32,5 @@ seed()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+  module.exports = seed;
