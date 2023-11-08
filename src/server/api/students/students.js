@@ -15,6 +15,24 @@ router.get("/", async (req, res, next) => {
 /** Creates new student */
 router.post("/", async (req, res, next) => {
   try {
+    const { firstname, lastname, email, gpa } = req.body;
+
+    if (typeof firstname !== 'string') {
+      return res.status(400).json({ error: 'Firstname must be a string' });
+    }
+    if (typeof lastname !== 'string') {
+      return res.status(400).json({ error: 'Lastname must be a string' });
+    }
+
+    const existingStudent = await prisma.student.findUnique({ where: { email } });
+    if (existingStudent) {
+      return res.status(400).json({ error: 'Email is already used' });
+    }
+
+    if (gpa < 0.0 || gpa > 4.0) {
+      return res.status(400).json({ error: 'GPA must be between 0.0 and 4.0' });
+    }
+
     const newStudent = await prisma.student.create({
       data: req.body,
     });
@@ -23,6 +41,7 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
 
 /** retrieves single student by id */
 // DONE? TO-Do - Double Check
