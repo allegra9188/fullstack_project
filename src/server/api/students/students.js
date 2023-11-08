@@ -65,8 +65,7 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const student = await prisma.task.findUnique({ where: { id } });
-    await prisma.task.delete({ where: { id } });
+    await prisma.student.delete({ where: { id } });
     res.sendStatus(204);
   } catch (err) {
     next(err);
