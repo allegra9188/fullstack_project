@@ -15,7 +15,7 @@ model Student {
   firstName      String
   lastName       String
   email          String   @unique
-  imageUrl       String
+  imageUrl       String   @default("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png")
   gpa            Decimal
 }
 // have to come back to range - perhaps needs to be done on the form or as a CRUD error?
