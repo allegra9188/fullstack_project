@@ -21,10 +21,24 @@ export default function StudentDetails() {
     deleteStudent(student.id);
   };
 
+
+  if (!student) {
+    return <p>There is no student with that id</p>;
+  }
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <main className="student-details">
+
+      <h1>
+        {student.firstName}+{student.lastName}
+      </h1>
+      <h2>{student.email}</h2>
+      <h2>{student.gpa}</h2>
+      <img src={student.imageUrl} alt={student.firstName} />
+    </main>
+
 
       <h1>
         {student.firstName}+{student.lastName}
