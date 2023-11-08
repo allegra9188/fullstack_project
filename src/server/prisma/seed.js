@@ -1,43 +1,20 @@
 const prisma = require("../prisma");
+const { faker } = require('@faker-js/faker');
 
-/** Seeds the database with a user and some tasks */
+/** Seeds the database with random names from the faker API */
 const seed = async () => {
-  const firstNames = [
-    "John",
-    "Jane",
-    "Mary",
-    "James",
-    "Emma",
-    "Jacob",
-    "Olivia",
-    "Max",
-    "Sophia",
-    "Ethan",
-  ];
-  const lastNames = [
-    "Smith",
-    "Johnson",
-    "Williams",
-    "Brown",
-    "Jones",
-    "Miller",
-    "Davis",
-    "Garcia",
-    "Rodriguez",
-    "Wilson",
-  ];
-  for (let i = 0; i < 100; i++) {
-    const randomFirstNameIndex = Math.floor(Math.random() * firstNames.length); // Generate a random index for first names
-    const randomLastNameIndex = Math.floor(Math.random() * lastNames.length); // Generate a random index for last names
 
-    const firstName = firstNames[randomFirstNameIndex]; // Get a random first name
-    const lastName = lastNames[randomLastNameIndex]; // Get a random last name
+  for (let i = 0; i < 100; i++) {
+
+    const randomFirstName = faker.person.firstName();
+    const randomLastName = faker.person.lastName();
     const gpa = (Math.random() * 4).toFixed(2);
+
     await prisma.student.create({
       data: {
-        firstName: firstName,
-        lastName: firstName,
-        email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}.${gpa}@students.com`,
+        firstName: randomFirstName,
+        lastName: randomLastName,
+        email: `${randomFirstName.toLowerCase()}.${randomLastName.toLowerCase()}@students.com`,
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png",
         gpa: gpa,
