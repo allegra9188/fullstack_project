@@ -22,11 +22,14 @@ export default function StudentDetails() {
     navigate("/"); // Step 3
   };
 
+  if (!student) {
+    return <p>There is no student with that id</p>;
+  }
+
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <main className="student-details">
-
       <h1>
         {student.firstName}+{student.lastName}
       </h1>
