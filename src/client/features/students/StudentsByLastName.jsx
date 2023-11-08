@@ -2,7 +2,7 @@ import { useState } from "react";
 import StudentCard from "./StudentCard";
 import StudentDetails from "./StudentDetails";
 import { useGetStudentsQuery } from "./studentSlice";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./Students.less";
 import "./StudentList.scss";
@@ -19,32 +19,24 @@ export default function Students() {
     <h2>Loading students...</h2>
   ) : (
     <main>
-      <br />
-      <h2>Students:</h2>
+      <h1>Students</h1>
       <form>
         <input
           type="text"
-          placeholder="Search Student..."
+          placeholder="Search..."
           onChange={(e) => setFilter(e.target.value)}
         />
       </form>
-      <button>
-        <Link to="/students/add">Add Student</Link>
-      </button>
       <div className="sortBy-container">
         <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbygpa")}>GPA</button>
-        <button onClick={() => navigate("/students/sortedbylastname")}>
-          Last Name
-        </button>
+        <button onClick={() => navigate("/students")}>First Name</button>
       </div>
-      <br />
       <ul className="student-list">
         {[...students]
           .filter((student) =>
             (student.firstName + student.lastName).match(searchRegex)
           )
-          .sort((a, z) => a.firstName.localeCompare(z.firstName))
+          .sort((a, z) => a.lastName.localeCompare(z.lastName))
           .map((student) => (
             <StudentCard key={student.id} student={student} />
           ))}

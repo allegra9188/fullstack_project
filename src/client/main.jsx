@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Students from "./features/students/StudentList";
 import StudentDetails from "./features/students/StudentDetails";
 import ErrorPage from "./features/students/ErrorPage";
+import StudentsByLastName from "./features/students/StudentsByLastName";
 import NewStudent from "./features/students/NewStudent";
 import StudentsByGpa from "./features/students/StudentsByGpa";
 
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/students/add", element: <NewStudent /> },
       { path: "*", element: <ErrorPage /> },
       { path: "/students/sortedbygpa", element: <StudentsByGpa /> },
+      { path: "/students/sortedbylastname", element: <StudentsByLastName /> },
     ],
   },
 ]);
