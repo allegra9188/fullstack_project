@@ -4,21 +4,22 @@ import {
   useEditStudentMutation,
   useGetStudentQuery,
 } from "./studentSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Step 1
 import "./StudentDetails.scss";
 
 /** Allows user to read, update, and delete a task */
 export default function StudentDetails() {
   const [deleteStudent] = useDeleteStudentMutation();
+  const navigate = useNavigate(); // Step 2
 
   const { id } = useParams();
   const { data: student, isLoading } = useGetStudentQuery(id);
 
-
   /** Deletes the task */
   const onDelete = async (evt) => {
     evt.preventDefault();
-    deleteStudent(student.id);
+    await deleteStudent(student.id);
+    navigate("/"); // Step 3
   };
 
   return isLoading ? (
