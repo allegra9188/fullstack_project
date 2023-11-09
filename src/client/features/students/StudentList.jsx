@@ -20,7 +20,6 @@ export default function Students() {
   ) : (
     <main>
       <br />
-      <h2>Students:</h2>
       <form>
         <input
           type="text"
@@ -39,6 +38,7 @@ export default function Students() {
         </button>
       </div>
       <br />
+      <h2>Students:</h2>
       <ul className="student-list">
         {[...students]
           .filter((student) =>
