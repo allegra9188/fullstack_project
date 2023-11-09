@@ -30,13 +30,6 @@ export default function Students() {
       <button>
         <Link to="/students/add">Add Student</Link>
       </button>
-      <div className="sortBy-container">
-        <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbygpa")}>GPA</button>
-        <button onClick={() => navigate("/students/sortedbylastname")}>
-          Last Name
-        </button>
-      </div>
       <br />
       <h2>Students:</h2>
       <ul className="student-list">

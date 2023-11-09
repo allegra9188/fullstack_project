@@ -32,20 +32,13 @@ export default function Students() {
       <button>
         <Link to="/students/add">Add Student</Link>
       </button>
-      <div className="sortBy-container">
-        <p>Sort by:</p>
-        <button onClick={() => navigate("/students")}>First Name</button>
-        <button onClick={() => navigate("/students/sortedbylastname")}>
-          Last Name
-        </button>
-      </div>
       <br />
       <ul className="student-list">
         {[...students]
           .filter((student) =>
             (student.firstName + student.lastName).match(searchRegex)
           )
-          .sort((a, z) => a.gpa.localeCompare(z.gpa))
+          .sort((a, z) => z.gpa.localeCompare(a.gpa))
           .map((student) => (
             <StudentCard key={student.id} student={student} />
           ))}

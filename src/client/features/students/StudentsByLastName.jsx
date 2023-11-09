@@ -27,10 +27,6 @@ export default function Students() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </form>
-      <div className="sortBy-container">
-        <p>Sort by:</p>
-        <button onClick={() => navigate("/students")}>First Name</button>
-      </div>
       <ul className="student-list">
         {[...students]
           .filter((student) =>

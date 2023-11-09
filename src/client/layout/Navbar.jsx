@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./Navbar.less";
 
@@ -7,7 +8,6 @@ import "./Navbar.less";
  * and "Log Out" if the user is logged in.
  */
 export default function Navbar() {
-
   return (
     <nav className="top">
       <h1>Student Tracker</h1>
