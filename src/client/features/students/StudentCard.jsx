@@ -8,42 +8,26 @@ import {
 // A Student Card displays a brief preview of the Student in StudentList
 
 export default function StudentCard({ student }) {
-
     
-    return (
-        <li className="student-card">
-            <div className="student-image">
-                {/* Link seeded image here: */}
-                <img src={student.imageUrl} className="student-img" alt="" />
-            </div>
-            <section className="student-info">
-                <h2>{student.firstName}</h2>
-                <h2>{student.lastName}</h2>
-            <Link to={`/students/${student.id}`}>More Info</Link>
-            </section>
-        </li>
-    )
-}
+    const [deleteStudent] = useDeleteStudentMutation();
 
-  const [deleteStudent] = useDeleteStudentMutation();
-
-  /** Deletes the task */
-  const onDelete = async (evt) => {
-    evt.preventDefault();
-    deleteStudent(student.id);
-  };
+    /** Deletes the task */
+    const onDelete = async (evt) => {
+      evt.preventDefault();
+      deleteStudent(student.id);
+    };
 
   return (
     <li className="student-card">
       <div className="student-image">
-        <img src={student.imageUrl} alt="" />
+        <img className="student-img" src={student.imageUrl} alt={student.firstName} />
       </div>
       <section className="student-info">
         <h2>{student.firstName}</h2>
         <h2>{student.lastName}</h2>
-        <Link to={`/students/${student.id}`}>More Info</Link>
         <h4>GPA: {student.gpa}</h4>
-        <button onClick={onDelete} aria-label="delete">
+        <Link className="moreinfo" to={`/students/${student.id}`}>More Info</Link>
+        <button className="deleteStudentButton" onClick={onDelete} aria-label="delete">
           Delete Student
         </button>
       </section>
