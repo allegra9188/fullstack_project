@@ -42,7 +42,7 @@ export default function Students() {
           />
         </form>
         <div>
-          <label>Sort By</label>
+          <label>Sort By:</label>
           <select id="sort-by" onChange={handleSort}>
             <option value="Please select"></option>
             <option value="first-name">First Name</option>
