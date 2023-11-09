@@ -138,18 +138,29 @@ input {
   // width: 200px;
 }
 
-h4{
-    margin-bottom: 2px;
+h4 {
+  margin-bottom: 2px;
 }
 
 .moreinfo {
-    color: black;
+  color: black;
 }
 
 .deleteStudentButton {
-    margin-top: 4px;
+  margin-top: 4px;
 }
 
 button {
-    background-color: aliceblue;
+  background-color: aliceblue;
+}
+
+.search-and-sort-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+select {
+  margin-left: 1px;
 }

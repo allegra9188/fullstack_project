@@ -33,24 +33,24 @@ export default function Students() {
     <h2>Loading students...</h2>
   ) : (
     <main>
-      <div>
-        <label>Sort By</label>
-        <select id="sort-by" onChange={handleSort}>
-          <option value="Please select"></option>
-          <option value="first-name">First Name</option>
-          <option value="last-name">Last Name</option>
-          <option value="gpa">GPA</option>
-        </select>
+      <div className="search-and-sort-container">
+        <form>
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </form>
+        <div>
+          <label>Sort By</label>
+          <select id="sort-by" onChange={handleSort}>
+            <option value="Please select"></option>
+            <option value="first-name">First Name</option>
+            <option value="last-name">Last Name</option>
+            <option value="gpa">GPA</option>
+          </select>
+        </div>
       </div>
-      <br />
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </form>
-      <br />
       <h1>Students</h1>
       <ul className="student-list">
         {[...students]
