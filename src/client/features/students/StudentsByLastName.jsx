@@ -19,7 +19,7 @@ export default function Students() {
     <h2>Loading students...</h2>
   ) : (
     <main>
-      <h1>Students</h1>
+      <br />
       <form>
         <input
           type="text"
@@ -27,6 +27,8 @@ export default function Students() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </form>
+      <br />
+      <h1>Students</h1>
       <ul className="student-list">
         {[...students]
           .filter((student) =>

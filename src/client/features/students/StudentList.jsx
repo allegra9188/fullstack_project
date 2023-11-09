@@ -27,9 +27,6 @@ export default function Students() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </form>
-      <button>
-        <Link to="/students/add">Add Student</Link>
-      </button>
       <br />
       <h2>Students:</h2>
       <ul className="student-list">

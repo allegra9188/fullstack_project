@@ -18,6 +18,9 @@ export default function Navbar() {
         <li>
           <NavLink to="/students">Students</NavLink>
         </li>
+        <li>
+          <NavLink to="/students/add">Add</NavLink>
+        </li>
       </menu>
     </nav>
   );
