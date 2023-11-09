@@ -1,23 +1,30 @@
-import { useState } from "react";
+// StudentList.jsx
+import React, { useState } from "react";
 import StudentCard from "./StudentCard";
 import StudentDetails from "./StudentDetails";
 import { useGetStudentsQuery } from "./studentSlice";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import PaginationLogic from "./PaginationLogic";
 
 import "./Students.less";
 import "./StudentList.scss";
 
-// reference from Book Buddy
 /** Main interface for user to interact with their tasks */
 export default function Students() {
   const { data: students, isLoading } = useGetStudentsQuery();
   const navigate = useNavigate();
+  const location = useLocation();
   const [filter, setFilter] = useState("");
   const searchRegex = new RegExp(filter, "i");
 
-  return isLoading ? (
-    <h2>Loading students...</h2>
-  ) : (
+  if (isLoading) {
+    return <h2>Loading students...</h2>;
+  }
+
+  // Check if the current route is "/students" for pagination
+  const isStudentsRoute = location.pathname === "/students";
+
+  return (
     <main>
       <br />
       <form>
@@ -39,16 +46,18 @@ export default function Students() {
       </div>
       <br />
       <h2>Students:</h2>
-      <ul className="student-list">
-        {[...students]
-          .filter((student) =>
-            (student.firstName + student.lastName).match(searchRegex)
-          )
-          .sort((a, z) => a.firstName.localeCompare(z.firstName))
-          .map((student) => (
-            <StudentCard key={student.id} student={student} />
-          ))}
-      </ul>
+      {isStudentsRoute ? (
+        <PaginationLogic students={students} searchRegex={searchRegex} />
+      ) : (
+        <ul className="student-list">
+          {[...students]
+            .filter((student) => (student.firstName + student.lastName).match(searchRegex))
+            .sort((a, z) => a.firstName.localeCompare(z.firstName))
+            .map((student) => (
+              <StudentCard key={student.id} student={student} />
+            ))}
+        </ul>
+      )}
     </main>
   );
 }
