@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const { createServer: createViteServer } = require("vite");
+const getStudents = require("./api/students/getStudents");
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -22,6 +23,25 @@ const createApp = async () => {
 
   // API routes
   app.use("/api", require("./api"));
+
+  // backend for pagination for /api/students
+  app.get("/api/students", async (res, req) => {
+    try {
+      const page = req.query.page || 1;
+      const pageSize = 10;
+      const skip = (page - 1) * pageSize;
+
+      // data retrieval logical
+      const students = await getStudents.getStudents({
+        take: pageSize,
+        skip,
+      });
+      res.json(students);
+    }catch(error) {
+      console.error(error);
+      res.status(500).send("Internal Service Error")
+    }
+  })
   
   // Serve static HTML in production & Vite dev server in development
   if (process.env.NODE_ENV === "production") {
