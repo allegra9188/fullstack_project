@@ -1,7 +1,113 @@
-.student-details {
+#moreInfo-html {
+  // background-color: rgba(70, 102, 148, 0.288);
+  background-color:azure;
+  background-image: linear-gradient(to top, rgba(63, 58, 58, 0.542), rgb(22, 25, 29));
+  height: 100vh;
+  width: auto;
+  color: antiquewhite;
+  padding: 15px;
+}
+
+  .student-details {
+    padding-top: 25px;
+    // background-color: rgb(43, 68, 98, 345);
+    background-image: linear-gradient(to top, rgba(63, 58, 58, 0.342), rgb(22, 25, 29));
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 25px;
+    padding: 5px;
+    padding-left: 20px;
+    min-height: 300px;
     img {
       max-width: 50%;
       margin: 1rem 0;
     }
   }
+  .student-details button {
+    width: 60px;
+    height: 30px;
+    border-radius: 12px;
+    display: inline;
+    background-color: antiquewhite;
+    cursor: pointer;
+  }
   
+  input {
+    background-color: antiquewhite;
+    border-radius: 5px;
+    // width: 200px;
+  }
+  
+  .firstName-input {
+    width: 120px;
+    margin-right: 5px;
+    margin-bottom: 26.3px;
+    // width: 200px;
+  }
+  
+  .lastName-input {
+    width: 120px;
+    // margin-left: 5px;
+    // width: 200px;
+  }
+  
+  .imageUrl-input {
+    width: 250px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-wrap: wrap;
+  }
+  
+  .email-input {
+    width: 200px;
+    margin-bottom: 15px;
+  }
+  
+  .gpa-input {
+    width: 60px;
+    // width: 200px;
+    color: black;
+    padding-left: 5px;
+    // text-align: center;
+  }
+  .update-btn {
+    // width: 60px;
+    // height: 30px;
+    margin-top: 50px;
+    margin-right: 5px;
+    color: black;
+    padding: .5px;
+    transition-duration: 0.4s;
+  }
+  
+  .save-btn {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+    padding: .5px;
+  }
+  
+#delete-Btn {
+  // color: black;
+  padding: .5px;
+  width: 100px;
+}
+
+.student-details h2 {
+  
+}
+
+.student-details button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: rgb(22, 25, 29); 
+  color: white;
+}
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #04AA6D; /* Green */
+  color: white;
+}

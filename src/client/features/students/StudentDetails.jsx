@@ -8,9 +8,8 @@ import {
 
 import { useParams, useNavigate } from "react-router-dom"; // Step 1
 
-
-
 import "./StudentDetails.scss";
+
 
 export default function StudentDetails() {
 
@@ -28,6 +27,7 @@ export default function StudentDetails() {
       console.error("Failed to update student:", error);
     }
   };
+  
 
   const [deleteStudent] = useDeleteStudentMutation();
   const navigate = useNavigate(); // Step 2
@@ -44,11 +44,13 @@ export default function StudentDetails() {
   if (!student) {
     return <p>There is no student with that id</p>;
   }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
+    <html id="moreInfo-html">
     <main className="student-details">
       <h2 className="details-name">
         <b>Name: </b> 
@@ -56,12 +58,12 @@ export default function StudentDetails() {
           <>
             <input className="firstName-input"
               type="text"
-              value={updatedStudent.firstName || student.firstName}
+              placeholder={updatedStudent.firstName || student.firstName}
               onChange={(e) => setUpdatedStudent({ ...updatedStudent, firstName: e.target.value })}
             />
             <input className="lastName-input"
               type="text"
-              value={updatedStudent.lastName || student.lastName}
+              placeholder={updatedStudent.lastName || student.lastName}
               onChange={(e) => setUpdatedStudent({ ...updatedStudent, lastName: e.target.value })}
             />
           </>
@@ -72,18 +74,18 @@ export default function StudentDetails() {
       {showInputs ? (
         <input className="imageUrl-input"
           type="text"
-          value={updatedStudent.imageUrl || student.imageUrl}
+          placeholder={updatedStudent.imageUrl || student.imageUrl}
           onChange={(e) => setUpdatedStudent({ ...updatedStudent, imageUrl: e.target.value })}
         />
       ) : (
         <img src={student.imageUrl} alt={student.firstName} className="student-img" />
       )}
       <div>
-        <h2>Email: {student.email}</h2>
+        <h2>Email: <a href={`mail to:${student.email}`}>{student.email}</a></h2>
         {showInputs && (
           <input className="email-input"
             type="text"
-            value={updatedStudent.email || student.email}
+            placeholder={updatedStudent.email || student.email}
             onChange={(e) => setUpdatedStudent({ ...updatedStudent, email: e.target.value })}
           />
         )}
@@ -94,7 +96,7 @@ export default function StudentDetails() {
         {showInputs && (
           <input className="gpa-input"
             type="number"
-            value={updatedStudent.gpa || student.gpa}
+            placeholder={updatedStudent.gpa || student.gpa}
             onChange={(e) => setUpdatedStudent({ ...updatedStudent, gpa: parseFloat(e.target.value) })}
           />
         )}
@@ -108,10 +110,11 @@ export default function StudentDetails() {
         </button>
       )}
   
-      <button onClick={onDelete} aria-label="delete">
+      <button id="delete-Btn" onClick={onDelete} aria-label="delete">
         Delete Student
       </button>
 
     </main>
+    </html>
   );
 }
