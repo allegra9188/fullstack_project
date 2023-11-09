@@ -2,7 +2,7 @@ import { useState } from "react";
 import StudentCard from "./StudentCard";
 import StudentDetails from "./StudentDetails";
 import { useGetStudentsQuery } from "./studentSlice";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Students.less";
 import "./StudentList.scss";
@@ -11,6 +11,7 @@ import "./StudentList.scss";
 /** Main interface for user to interact with their tasks */
 export default function Students() {
   const { data: students, isLoading } = useGetStudentsQuery();
+
   const navigate = useNavigate();
   const [filter, setFilter] = useState("");
   const searchRegex = new RegExp(filter, "i");
@@ -33,7 +34,7 @@ export default function Students() {
       </button>
       <div className="sortBy-container">
         <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbygpa")}>GPA</button>
+        <button onClick={() => navigate("/students")}>First Name</button>
         <button onClick={() => navigate("/students/sortedbylastname")}>
           Last Name
         </button>
@@ -44,7 +45,7 @@ export default function Students() {
           .filter((student) =>
             (student.firstName + student.lastName).match(searchRegex)
           )
-          .sort((a, z) => a.firstName.localeCompare(z.firstName))
+          .sort((a, z) => a.gpa.localeCompare(z.gpa))
           .map((student) => (
             <StudentCard key={student.id} student={student} />
           ))}
