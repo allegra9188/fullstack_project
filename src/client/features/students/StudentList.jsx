@@ -16,42 +16,57 @@ export default function Students() {
   const location = useLocation();
   const [filter, setFilter] = useState("");
   const searchRegex = new RegExp(filter, "i");
-
+  // Check if the current route is "/students" for pagination
+  const isStudentsRoute = location.pathname === "/students";
   if (isLoading) {
     return <h2>Loading students...</h2>;
   }
 
-  // Check if the current route is "/students" for pagination
-  const isStudentsRoute = location.pathname === "/students";
+  const handleSort = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    if (e.target.value === "last-name") {
+      navigate("/students/sortedbylastname");
+    }
+    if (e.target.value === "first-name") {
+      navigate("/students");
+    }
+    if (e.target.value === "gpa") {
+      navigate("/students/sortedbygpa");
+    }
+  };
 
-  return (
+  return isLoading ? (
+    <h2>Loading students...</h2>
+  ) : (
     <main>
-      <br />
-      <form>
-        <input
-          type="text"
-          placeholder="Search Student..."
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </form>
-      <button>
-        <Link to="/students/add">Add Student</Link>
-      </button>
-      <div className="sortBy-container">
-        <p>Sort by:</p>
-        <button onClick={() => navigate("/students/sortedbygpa")}>GPA</button>
-        <button onClick={() => navigate("/students/sortedbylastname")}>
-          Last Name
-        </button>
+      <div className="search-and-sort-container">
+        <form>
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </form>
+        <div>
+          <label>Sort By:</label>
+          <select id="sort-by" onChange={handleSort}>
+            <option value="Please select"></option>
+            <option value="first-name">First Name</option>
+            <option value="last-name">Last Name</option>
+            <option value="gpa">GPA</option>
+          </select>
+        </div>
       </div>
-      <br />
       <h2>Students:</h2>
       {isStudentsRoute ? (
         <PaginationLogic students={students} searchRegex={searchRegex} />
       ) : (
         <ul className="student-list">
           {[...students]
-            .filter((student) => (student.firstName + student.lastName).match(searchRegex))
+            .filter((student) =>
+              (student.firstName + student.lastName).match(searchRegex)
+            )
             .sort((a, z) => a.firstName.localeCompare(z.firstName))
             .map((student) => (
               <StudentCard key={student.id} student={student} />
