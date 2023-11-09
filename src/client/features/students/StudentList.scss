@@ -1,3 +1,13 @@
+
+.students {
+  li:not(:last-child) {
+    margin-bottom: 1ch;
+  }
+
+  form {
+    & > * {
+      margin-right: 0.5ch;
+
 .student-list {
     display: flex;
     flex-flow: row wrap;
@@ -47,4 +57,94 @@
       }
     }
   }
+
+  button {
+    cursor: pointer;
+    padding: 0.1rem 0.25rem;
+  }
+}
+
+.student-card {
+
+  width: 160px;
+  height: 180px;
+  margin: 5px;
+  background-color:cadetblue;
+  text-align: center;
+  padding: 2px;
+  // background-color: blueviolet;
+}
   
+
+.student-info {
+  // background-color: aqua;
+}
+
+.student-image {
+//   width: 80px;
+//   height: 90px;
+// background-color: aqua;
+}
+
+.student-img {
+  width: 80px;
+  height: 90px;
+}
+
+.student-list {
+// background-color: black;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+margin-top: 25px;
+width: auto;
+}
+
+.student-details {
+  margin-top: 25px;
+  // background-color: black;
+  // text-align: center;
+}
+
+.update-btn {
+  margin-top: 50px;
+}
+
+.save-btn {
+  margin-left: 5px;
+}
+
+input {
+  background-color: aliceblue;
+  border-radius: 5px;
+  // width: 200px;
+}
+
+.firstName-input {
+ width: 120px;
+ margin-right: 5px;
+  // width: 200px;
+}
+
+.lastName-input {
+  width: 120px;
+  // margin-left: 5px;
+   // width: 200px;
+ }
+
+ .imageUrl-input {
+  width: 250px;
+ margin-top: 10px;
+ margin-bottom: 15px;
+   text-wrap: wrap;
+ }
+
+ .email-input {
+  width: 200px;
+   margin-bottom: 15px;
+ }
+
+ .gpa-input {
+  width: 60px;
+   // width: 200px;
+ }
