@@ -15,12 +15,12 @@ router.get("/", async (req, res, next) => {
 /** Creates new student */
 router.post("/", async (req, res, next) => {
   try {
-    const { firstname, lastname, email, gpa } = req.body;
+    const { firstName, lastName, email, gpa } = req.body;
 
-    if (typeof firstname !== 'string') {
+    if (typeof firstName !== 'string') {
       return res.status(400).json({ error: 'Firstname must be a string' });
     }
-    if (typeof lastname !== 'string') {
+    if (typeof lastName !== 'string') {
       return res.status(400).json({ error: 'Lastname must be a string' });
     }
 

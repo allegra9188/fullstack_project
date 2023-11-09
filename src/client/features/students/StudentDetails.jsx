@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { useEditStudentMutation, useGetStudentQuery } from "./studentSlice";
+
+import {
+  useDeleteStudentMutation,
+  useEditStudentMutation,
+  useGetStudentQuery,
+} from "./studentSlice";
+
 import { useParams } from "react-router-dom";
 import "./StudentDetails.scss";
 
 export default function StudentDetails() {
+
   const { id } = useParams();
   const { data: student, isLoading } = useGetStudentQuery(id);
   const [updatedStudent, setUpdatedStudent] = useState({});
@@ -82,6 +89,40 @@ export default function StudentDetails() {
           Save
         </button>
       )}
+
+  const [deleteStudent] = useDeleteStudentMutation();
+
+  const { id } = useParams();
+  const { data: student, isLoading } = useGetStudentQuery(id);
+
+  /** Deletes the task */
+  const onDelete = async (evt) => {
+    evt.preventDefault();
+    deleteStudent(student.id);
+  };
+
+  if (!student) {
+    return <p>There is no student with that id</p>;
+  }
+
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
+    <main className="student-details">
+      <h1>
+        {student.firstName + " " + student.lastName}
+      </h1>
+
+      <br />
+      <h2>{student.firstName + " " + student.lastName}</h2>
+
+      <h2>{student.email}</h2>
+      <h2>GPA: {student.gpa}</h2>
+      <img src={student.imageUrl} alt={student.firstName} />
+      <button onClick={onDelete} aria-label="delete">
+        Delete Student
+      </button>
+
     </main>
   );
 }
