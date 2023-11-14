@@ -2,8 +2,8 @@
   // background-color: rgba(70, 102, 148, 0.288);
   background-color:azure;
   background-image: linear-gradient(to top, rgba(63, 58, 58, 0.542), rgb(22, 25, 29));
-  height: 100vh;
-  width: auto;
+  // height: 70vh;
+  // width: 100vw;
   color: antiquewhite;
   padding: 15px;
 }
@@ -23,13 +23,16 @@
       margin: 1rem 0;
     }
   }
-  .student-details button {
+  
+   button {
     width: 60px;
     height: 30px;
     border-radius: 12px;
     display: inline;
     background-color: antiquewhite;
     cursor: pointer;
+    justify-self: start;
+    transition-duration: 0.4s;
   }
   
   input {
@@ -77,7 +80,6 @@
     margin-right: 5px;
     color: black;
     padding: .5px;
-    transition-duration: 0.4s;
   }
   
   .save-btn {
@@ -93,21 +95,24 @@
   width: 100px;
 }
 
+.deleteStudentButton {
+  padding: .5px;
+  width: 100px;
+}
+
 .student-details h2 {
   
 }
 
-.student-details button:hover {
+ button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   background-color: rgb(22, 25, 29); 
   color: white;
 }
 
-.button {
-  transition-duration: 0.4s;
-}
 
-.button:hover {
-  background-color: #04AA6D; /* Green */
-  color: white;
-}
+@media(max-width: 450px) {
+  h2 {
+    font-size: 15px;
+    flex-wrap: wrap;
+  }}

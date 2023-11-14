@@ -81,7 +81,7 @@ export default function StudentDetails() {
         <img src={student.imageUrl} alt={student.firstName} className="student-img" />
       )}
       <div>
-        <h2>Email: <a href={`mail to:${student.email}`}>{student.email}</a></h2>
+        <h2>Email: <a href={`mailto:${student.email}`}>{student.email}</a></h2>
         {showInputs && (
           <input className="email-input"
             type="text"
